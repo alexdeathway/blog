@@ -12,7 +12,7 @@ const inter = Inter({
 	variable: "--font-inter",
 })
 
-const getFeaturedPostContent = (slug: string = "the-science-of-geometry") => {
+const getFeaturedPostContent = (slug: string = "hello-world") => {
 	const folder = "posts/"
 	const file = `${folder}${slug}.md`
 	const content = fs.readFileSync(file, "utf8")
@@ -25,7 +25,7 @@ export default function FeaturedPost() {
 
 	return (
 		<Link
-			href="/the-science-of-geometry"
+			href="/hello-world"
 			className={`mt-10 flex w-[90%] flex-col items-center rounded-lg bg-secondary-bg p-6 hover:drop-shadow-2xl dark:bg-[#1F2937] dark:hover:bg-[#293548] sm:w-[85%] sm:flex-row md:w-[85%] lg:w-[75%] lg:p-10 xl:w-[70%] ${inter.variable} font-inter cursor-pointer`}
 		>
 			<Image
