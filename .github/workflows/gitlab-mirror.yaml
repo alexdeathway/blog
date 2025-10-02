@@ -1,0 +1,37 @@
+name: Mirror to Gitlab
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    
+    - name: Checkout
+      uses: actions/checkout@v3
+   
+    - name: install ssh keys
+      run: |
+        install -m 600 -D /dev/null ~/.ssh/id_rsa
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        ssh-keyscan -H gitlab.com >> ~/.ssh/known_hosts
+
+    #install git and git-lfs
+    - name: install git and git-lfs
+      run: |
+        sudo apt-get update
+        sudo apt-get install git git-lfs -y
+
+    - name: Set Git user
+      run: |
+        git config --global user.name "${{ secrets.GITLAB_USERNAME }}"
+        git config --global user.email "${{ secrets.GITLAB_EMAIL }}"
+    
+    - name: fetch unshallow
+      run:  git fetch --unshallow
+    
+    - name: Push to GitLab
+      run: |
+        git remote add gitlab ${{ secrets.GITLAB_URL }}
+        git push gitlab master --force
