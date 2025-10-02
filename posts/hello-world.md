@@ -3,7 +3,7 @@ id: "1"
 title: "Hello world"
 date: "2 october 2025"
 excerpt: "So it begin"
-imageSrc: "/images/time-north-pole.webp"
+imageSrc: "/images/"
 author: "Sarvesh Yadav @alexdeathway"
 tags: ["hello", "world"]
 ---
