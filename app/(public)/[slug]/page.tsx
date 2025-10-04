@@ -92,7 +92,11 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
 					/>
 				</div>
 				<div className="flex w-full flex-col items-center justify-between gap-1 px-4">
-					<div className="w-full flex flex-row items-center justify-between">
+					<div className="w-full flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+						{/* dev-0.0.5-response
+    						On small screens (<640px), stack vertically for better readability.
+    						On larger screens, display in a row with space between.
+  						*/}
 						<p className="text-left text-sm font-light text-neutral-400">
 							{readingTime} {readingTime != 1 ? "minutes" : "minute"} read...
 						</p>
