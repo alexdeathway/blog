@@ -19,7 +19,7 @@ export default function Nav() {
 					priority
 				/>
 				<div className="hidden text-lg font-bold min-[380px]:block xs:text-xl">
-					Alex Deathway's Blog
+					Alex Deathway&apos;s Blog
 				</div>
 			</Link>
 			<div className="relative flex items-center gap-4">
