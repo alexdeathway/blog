@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react"
 import { useTheme } from "next-themes"
 
 const giscusConfig = {
-	repo: "Hack-Weekly/lavender-snake-blog",
+	repo: "alexdeathway/blog",
 	repositoryId: "R_kgDOJRHVPQ",
 	category: "General",
 	categoryId: "DIC_kwDOJRHVPc4CVwuf",

@@ -12,14 +12,14 @@ export default function Nav() {
 			<Link href="/" className="flex  items-center gap-1">
 				<Image
 					className="aspect-square"
-					src="/lavender-snake.png"
-					alt="Team Lavender Snake Logo"
+					src="/alexdeathway_logo.png"
+					alt="Alex Deathway Logo"
 					width={64}
 					height={64}
 					priority
 				/>
 				<div className="hidden text-lg font-bold min-[380px]:block xs:text-xl">
-					Snakebyte
+					Alex Deathway's Blog
 				</div>
 			</Link>
 			<div className="relative flex items-center gap-4">
