@@ -61,7 +61,7 @@ function SearchModal(searchModalProps: SearchModalProps) {
 					</div>
 				</div>
 				<div className="flex flex-col items-center overflow-y-auto">
-					{!searchInput && <div>Start typing to search Snakebyte posts</div>}
+					{!searchInput && <div>Start typing to search posts</div>}
 					{searchInput && searchResult.length === 0 && (
 						<div>No results found for &quot;{searchInput}&quot;</div>
 					)}
