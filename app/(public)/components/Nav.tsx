@@ -24,13 +24,15 @@ export default function Nav() {
 			</Link>
 			<div className="relative flex items-center gap-4">
 				<SearchBar postMetadatas={postMetadata} />
-				<Link
+				{/* <Link
 					href="/team"
 					className="flex text-center text-xs font-bold xs:text-sm sm:text-base"
 				>
 					<span className="min-[380px]:hidden">TEAM </span>
 					<span className="hidden min-[380px]:block">MEET THE TEAM </span>
-				</Link>
+				</Link> */}
+
+					{/*removing team for now, would probably include snake game */}
 				<ThemeToggler />
 			</div>
 		</nav>

@@ -11,10 +11,10 @@ const serif = Serif({
 
 export const metadata: Metadata = {
 	title: {
-		default: "Snakebyte",
-		template: "%s | Snakebyte",
+		default: "Blog",
+		template: "%s | Blog",
 	},
-	description: "A blog by Lavender Snake",
+	description: "A blog by Sarvesh Yadav (@alexdeathway)",
 	icons: {
 		icon: "/favicon.ico",
 		apple: "/apple-touch-icon.png",
