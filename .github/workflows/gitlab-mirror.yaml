@@ -1,8 +1,7 @@
 name: Mirror to Gitlab
 on:
   push:
-    branches:
-      - master
+    
 jobs:
   deploy:
     runs-on: ubuntu-latest
