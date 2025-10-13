@@ -4,7 +4,7 @@ const nextConfig = {
 		appDir: true,
 	},
 	images: {
-		domains: ["https://visitor-badge.glitch.me"],
+		domains: ["visitor-badge.glitch.me"],
 		// remotePatterns: [
 		// 	{
 		// 	  protocol: 'https',
