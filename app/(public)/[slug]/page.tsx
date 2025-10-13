@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import fs from "fs"
-import Markdown from "markdown-to-jsx"
+import Markdown, { compiler } from "markdown-to-jsx"
 import matter from "gray-matter"
 import getPostMetadata from "../components/getPostMetadata"
 import Tag from "../components/Tag"
@@ -11,11 +11,11 @@ import removeMd from "remove-markdown"
 import { Metadata } from "next"
 import Giscus from "./Giscus"
 
-// Note: Avoid explicit param typing here to satisfy Next.js' generic constraint for PageProps in older versions.
-type SlugPageProps = { params: { slug: string } }
-
-export async function generateMetadata(props: any): Promise<Metadata> {
-	const { params } = props as SlugPageProps
+export async function generateMetadata({
+	params,
+}: {
+	params: { slug: string }
+}): Promise<Metadata> {
 	const post = getPostContent(params.slug)
 	return post
 		? {
@@ -55,8 +55,7 @@ export async function generateStaticParams() {
 	}))
 }
 
-export default function BlogPost(props: any) {
-	const { params } = props as SlugPageProps
+export default function BlogPost({ params }: { params: { slug: string } }) {
 	const post = getPostContent(params.slug)
 	const urlDomain = process.env.domain
 	
