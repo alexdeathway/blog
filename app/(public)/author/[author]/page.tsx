@@ -5,13 +5,15 @@ import getAllAuthors from "../../components/getAllAuthors"
 import { BsHourglassSplit } from "react-icons/bs"
 import { Metadata } from "next"
 
-type AuthorPageProps = { params: { author: string } }
-
-export async function generateMetadata(props: any): Promise<Metadata> {
-	const { params } = props as AuthorPageProps
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ author: string }>
+}): Promise<Metadata> {
+	const { author } = await params
 	return {
-		title: params.author,
-		description: `Posts written by ${params.author}.`,
+		title: author,
+		description: `Posts written by ${author}.`,
 	}
 }
 
@@ -22,10 +24,9 @@ export async function generateStaticParams() {
 	}))
 }
 
-export default function Author(props: any) {
-	const { params } = props as AuthorPageProps
+export default async function Author({ params }: { params: Promise<{ author: string }> }) {
 	const postMetadata = getPostMetadata()
-	const author = params.author
+	const { author } = await params
 	const allAuthors = getAllAuthors()
 
 	return (

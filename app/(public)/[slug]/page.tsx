@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import fs from "fs"
-import Markdown from "markdown-to-jsx"
+import Markdown, { compiler } from "markdown-to-jsx"
 import matter from "gray-matter"
 import getPostMetadata from "../components/getPostMetadata"
 import Tag from "../components/Tag"
@@ -11,12 +11,13 @@ import removeMd from "remove-markdown"
 import { Metadata } from "next"
 import Giscus from "./Giscus"
 
-// Note: Avoid explicit param typing here to satisfy Next.js' generic constraint for PageProps in older versions.
-type SlugPageProps = { params: { slug: string } }
-
-export async function generateMetadata(props: any): Promise<Metadata> {
-	const { params } = props as SlugPageProps
-	const post = getPostContent(params.slug)
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+	const { slug } = await params
+	const post = getPostContent(slug)
 	return post
 		? {
 				title: post.data.title,
@@ -55,9 +56,9 @@ export async function generateStaticParams() {
 	}))
 }
 
-export default function BlogPost(props: any) {
-	const { params } = props as SlugPageProps
-	const post = getPostContent(params.slug)
+export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
+	const { slug } = await params
+	const post = getPostContent(slug)
 	const urlDomain = process.env.domain
 	
 	const plainText = removeMd(post ? post.content : "")
@@ -119,7 +120,7 @@ export default function BlogPost(props: any) {
 				</Markdown>
 				<div className="w-full flex items-center justify-center">
 					{/*  eslint-disable-next-line @next/next/no-img-element */}
-					<img src={`https://visitor-badge.glitch.me/badge?page_id=${urlDomain}.${params.slug}`} alt="Post visitor count" />
+					<img src={`https://visitor-badge.glitch.me/badge?page_id=${urlDomain}.${slug}`} alt="Post visitor count" />
 				</div>
 				<Giscus />
 			</article>
