@@ -5,9 +5,9 @@ import { useTheme } from "next-themes"
 
 const giscusConfig = {
 	repo: "alexdeathway/blog",
-	repositoryId: "R_kgDOJRHVPQ",
+	repositoryId: "R_kgDOPZVBLQ",
 	category: "General",
-	categoryId: "DIC_kwDOJRHVPc4CVwuf",
+	categoryId: "DIC_kwDOPZVBLc4Cwi0d",
 	mapping: "pathname",
 	reactions: "1",
 	metadata: "0",
@@ -31,7 +31,7 @@ export default function Giscus() {
 	const COMMENTS_ID = "comments-container"
 
 	const LoadComments = useCallback(() => {
-		setEnabledLoadComments(false)
+		setEnabledLoadComments(true)
 
 		const {
 			repo,
