@@ -5,18 +5,39 @@ import getAllUniqueTags from "../../components/getAllUniqueTags"
 import { BsHourglassSplit } from "react-icons/bs"
 import { Metadata } from "next"
 
-export async function generateMetadata({
-	params,
-}: {
-	params: { category: string }
-}): Promise<Metadata> {
-	const title =
-		params.category.charAt(0).toUpperCase() + params.category.slice(1)
+// export async function generateMetadata({
+// 	params,
+// }: {
+// 	params: { category: string }
+// }): Promise<Metadata> {
+// 	const title =
+// 		params.category.charAt(0).toUpperCase() + params.category.slice(1)
+// 	return {
+// 		title: title,
+// 		description: `Posts under the ${title} category.`,
+// 	}
+// }
+
+
+//[patch 0.0.3] fix issue of metadata not generating correctly for category pages
+export async function generateMetadata({ params }: { params?: { category?: string } }) {
+	const category = params?.category
+
+	if (!category) {
+		return {
+			title: "Category",
+			description: "Posts by category",
+		}
+	}
+
+	const title = category.charAt(0).toUpperCase() + category.slice(1)
+
 	return {
-		title: title,
+		title,
 		description: `Posts under the ${title} category.`,
 	}
 }
+
 
 export async function generateStaticParams() {
 	const tags = getAllUniqueTags()
