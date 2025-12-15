@@ -4,7 +4,7 @@ import getPostMetadata from "../../components/getPostMetadata"
 import getAllUniqueTags from "../../components/getAllUniqueTags"
 import { BsHourglassSplit } from "react-icons/bs"
 import { Metadata } from "next"
-
+import { notFound } from "next/navigation"
 // export async function generateMetadata({
 // 	params,
 // }: {
@@ -49,6 +49,10 @@ export async function generateStaticParams() {
 export default function Category({ params }: { params: { category: string } }) {
 	const postMetadata = getPostMetadata()
 	const category = params.category
+
+	if (!category) {
+		notFound()
+	}
 
 	function capitalizeFirstLetter(str: string) {
 		return str.charAt(0).toUpperCase() + str.slice(1)
