@@ -8,11 +8,12 @@ import { Metadata } from "next"
 export async function generateMetadata({
 	params,
 }: {
-	params: { author: string }
+	params: Promise<{ author: string }>
 }): Promise<Metadata> {
+	const { author } = await params
 	return {
-		title: params.author,
-		description: `Posts written by ${params.author}.`,
+		title: author,
+		description: `Posts written by ${author}.`,
 	}
 }
 
@@ -23,9 +24,9 @@ export async function generateStaticParams() {
 	}))
 }
 
-export default function Author({ params }: { params: { author: string } }) {
+export default async function Author({ params }: { params: Promise<{ author: string }> }) {
 	const postMetadata = getPostMetadata()
-	const author = params.author
+	const { author } = await params
 	const allAuthors = getAllAuthors()
 
 	return (

@@ -14,9 +14,10 @@ import Giscus from "./Giscus"
 export async function generateMetadata({
 	params,
 }: {
-	params: { slug: string }
+	params: Promise<{ slug: string }>
 }): Promise<Metadata> {
-	const post = getPostContent(params.slug)
+	const { slug } = await params
+	const post = getPostContent(slug)
 	return post
 		? {
 				title: post.data.title,
@@ -55,8 +56,9 @@ export async function generateStaticParams() {
 	}))
 }
 
-export default function BlogPost({ params }: { params: { slug: string } }) {
-	const post = getPostContent(params.slug)
+export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
+	const { slug } = await params
+	const post = getPostContent(slug)
 	const urlDomain = process.env.domain
 	
 	const plainText = removeMd(post ? post.content : "")
@@ -118,7 +120,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
 				</Markdown>
 				<div className="w-full flex items-center justify-center">
 					{/*  eslint-disable-next-line @next/next/no-img-element */}
-					<img src={`https://visitor-badge.glitch.me/badge?page_id=${urlDomain}.${params.slug}`} alt="Post visitor count" />
+					<img src={`https://visitor-badge.glitch.me/badge?page_id=${urlDomain}.${slug}`} alt="Post visitor count" />
 				</div>
 				<Giscus />
 			</article>
