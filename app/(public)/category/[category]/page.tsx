@@ -8,10 +8,11 @@ import { Metadata } from "next"
 export async function generateMetadata({
 	params,
 }: {
-	params: { category: string }
+	params: Promise<{ category: string }>
 }): Promise<Metadata> {
+	const { category } = await params
 	const title =
-		params.category.charAt(0).toUpperCase() + params.category.slice(1)
+		category.charAt(0).toUpperCase() + category.slice(1)
 	return {
 		title: title,
 		description: `Posts under the ${title} category.`,
@@ -25,9 +26,9 @@ export async function generateStaticParams() {
 	}))
 }
 
-export default function Category({ params }: { params: { category: string } }) {
+export default async function Category({ params }: { params: Promise<{ category: string }> }) {
 	const postMetadata = getPostMetadata()
-	const category = params.category
+	const { category } = await params
 
 	function capitalizeFirstLetter(str: string) {
 		return str.charAt(0).toUpperCase() + str.slice(1)
