@@ -1,6 +1,66 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+	--color-primary-50: #F0EBFF;
+	--color-primary-100: #C8BBEA;
+	--color-primary-200: #A692D1;
+	--color-primary-300: #816EB3;
+	--color-primary-400: #674D9B;
+	--color-primary-500: #4F378B;
+	--color-primary-600: #3E256F;
+	--color-primary-700: #2D165B;
+	--color-primary-800: #1E0D45;
+	--color-primary-900: #11062B;
+	--color-primary-950: #060011;
+
+	--color-secondary-50: #F0D2E9;
+	--color-secondary-100: #D18FC4;
+	--color-secondary-200: #C27AB7;
+	--color-secondary-300: #B66AAE;
+	--color-secondary-400: #A15C9D;
+	--color-secondary-500: #964C8F;
+	--color-secondary-600: #793B73;
+	--color-secondary-700: #6A3062;
+	--color-secondary-800: #4F1A46;
+	--color-secondary-900: #3C1034;
+	--color-secondary-950: #1C0219;
+
+	--color-error: #8C1D18;
+	--color-error-content: #F9DEDC;
+	--color-error-focus: #601410;
+	--color-error-content-focus: #F2B8B5;
+
+	--color-success: #2B9115;
+	--color-success-content: #DFF6D9;
+	--color-success-focus: #1D620D;
+	--color-success-content-focus: #B0E9A1;
+
+	--color-grey-20: #333333;
+	--color-grey-redtint: #F7F2F2;
+	--color-title: #24248E;
+	--color-title-dark: #e9e9f3;
+	--color-primary-bg: #F4F4EC;
+	--color-secondary-bg: #ececf4;
+	--color-card-bg: #FAFAFA;
+	--color-primary-dark-bg: #232136;
+	--color-primary-dark-bg-darker: #251a58;
+	--color-secondary-dark-bg: #160020;
+
+	--min-width-1\/2: 50%;
+	--min-width-1\/3: 33%;
+	--min-width-1\/4: 25%;
+
+	--max-width-1\/2: 50%;
+	--max-width-1\/3: 33%;
+	--max-width-1\/4: 25%;
+
+	--font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+	--breakpoint-xs: 480px;
+}
 
 @layer base {
 	html {
@@ -11,10 +71,15 @@
 	}
 }
 
-@layer utilities {
-	/*Dynamic viewport height with viewport height as fallback.*/
-	.min-h-dscreen {
-		min-height: 100vh;
-		min-height: 100dvh;
+@utility min-h-dscreen {
+	min-height: 100vh;
+	min-height: 100dvh;
+}
+
+@utility scrollbar-none {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
 	}
 }
